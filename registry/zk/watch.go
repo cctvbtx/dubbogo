@@ -305,5 +305,6 @@ func (w *zookeeperWatcher) Valid() bool {
 func (w *zookeeperWatcher) Stop() {
 	w.once.Do(func() {
 		w.client.Close()
+		w.wait.Wait()
 	})
 }

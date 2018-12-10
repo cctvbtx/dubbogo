@@ -1,4 +1,3 @@
-// Copyright (c) 2015 Asim Aslam.
 // Copyright (c) 2016 ~ 2018, Alex Stocks.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -1128,7 +1127,6 @@ func findField(name string, typ reflect.Type) (int, error) {
 func (d *Decoder) decInstance(typ reflect.Type, cls classInfo) (interface{}, error) {
 	var (
 		i int
-		j int
 	)
 
 	if typ.Kind() != reflect.Struct {
@@ -1215,13 +1213,26 @@ func (d *Decoder) decInstance(typ reflect.Type, cls classInfo) (interface{}, err
 		case kind == reflect.Slice || kind == reflect.Array:
 			m, e := d.decList(TAG_READ)
 			if e != nil {
+				if err == io.EOF {
+					break
+				}
 				return nil, jerrors.Trace(err)
 			}
 			v := reflect.ValueOf(m)
-			if v.Len() > 0 {
+			if m != nil && v.Len() > 0 {
+				// fmt.Printf("fldValue type %s\n", fldValue.Type().String())
+				elemPtrType := fldValue.Type().Elem().Kind() == reflect.Ptr
 				sl := reflect.MakeSlice(fldValue.Type(), v.Len(), v.Len())
-				for j = 0; j < v.Len(); j++ {
-					sl.Index(j).Set(reflect.ValueOf(v.Index(j).Interface()))
+				for i = 0; i < v.Len(); i++ {
+					item := v.Index(i).Interface()
+					itemValue := reflect.ValueOf(item)
+					if iv, ok := itemValue.Interface().(reflect.Value); ok {
+						itemValue = iv
+					}
+					if !elemPtrType && itemValue.Kind() == reflect.Ptr {
+						itemValue = itemValue.Elem()
+					}
+					sl.Index(i).Set(itemValue)
 				}
 				fldValue.Set(sl)
 			}

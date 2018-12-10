@@ -216,6 +216,10 @@ func ReflectResponse(in interface{}, out interface{}) error {
 		return jerrors.Errorf("@out should be a pointer")
 	}
 
+	if inV, ok := in.(reflect.Value); ok {
+		in = inV.Interface()
+	}
+
 	inType := reflect.TypeOf(in)
 	switch inType.Kind() {
 	case reflect.Bool:

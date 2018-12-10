@@ -1221,6 +1221,9 @@ func (d *Decoder) decInstance(typ reflect.Type, cls classInfo) (interface{}, err
 			v := reflect.ValueOf(m)
 			if m != nil && v.Len() > 0 {
 				// fmt.Printf("fldValue type %s\n", fldValue.Type().String())
+				// ref note: the following codes is related to
+				// [issue 6](https://github.com/AlexStocks/dubbogo/issues/6).
+				// It is fixed by [wongoo](https://github.com/wongoo).
 				elemPtrType := fldValue.Type().Elem().Kind() == reflect.Ptr
 				sl := reflect.MakeSlice(fldValue.Type(), v.Len(), v.Len())
 				for i = 0; i < v.Len(); i++ {

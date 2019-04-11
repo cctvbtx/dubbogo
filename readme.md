@@ -1,8 +1,12 @@
-# dubbogo #
+# dubbogo
 
 a golang micro-service framework compatible with alibaba dubbo. 
 
-## feature ##
+## Notice
+
+Because [the author](https://github.com/asim) of [go-micro](https://github.com/micro/go-micro) [charges](https://github.com/AlexStocks/dubbogo/issues/) this program is stolen from [go-micro](https://github.com/micro/go-micro) though I have followed the Apache License 2.0, I made a tough decision that I do not maitain this program any more. I know it was a bad news for dubbogo users. I apologize to all of you. 
+
+## feature
 ---
 - 1 基于TCP or HTTP的分布式的RPC(√)
 - 2 支持多种编解码协议，如 JsonRPC(√), Hessian(√), ProtoBuf,Thrift等

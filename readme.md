@@ -1,10 +1,10 @@
 # dubbogo
 
-a golang micro-service framework compatible with alibaba dubbo. 
+a golang micro-service framework compatible with alibaba dubbo.
 
 ## Notice
 
-Because [the author](https://github.com/asim) of [go-micro](https://github.com/micro/go-micro) [charges](https://github.com/AlexStocks/dubbogo/issues/) this program is stolen from [go-micro](https://github.com/micro/go-micro) though I have followed the Apache License 2.0, I made a tough decision that I do not maitain this program any more. I know it was a bad news for dubbogo users. I apologize to all of you. 
+Because [the author](https://github.com/asim) of [go-micro](https://github.com/micro/go-micro) [charges](https://github.com/AlexStocks/dubbogo/issues/) this program is stolen from [go-micro](https://github.com/micro/go-micro) though I have followed the Apache License 2.0, I made a tough decision that I do not maintain this program any more. I know it was a bad news for dubbogo users. I apologize to all of you.
 
 However, you can use [dubbo-go](https://github.com/dubbo/dubbo-go) instead.
 
@@ -30,7 +30,7 @@ TODO :
 
 * 添加异步通信机制；
 
-  
+
 
 ## 0.1 说明 ##
 ---
